@@ -1,0 +1,33 @@
+#cloud-config
+
+# not verified
+#coreos:
+#  etcd:
+     # replace token
+#    discovery: https://discovery.etcd.io/sometoken
+#    addr: $private_ipv4:4001
+#    peer-addr: $private_ipv4:7001
+#
+#  fleet:
+#    public-ip: $private_ipv4
+#
+#units:
+#  - name: etcd.service
+#    command: start
+#  - name: fleet.service
+#    command: start
+#
+write_files:
+  - path: /etc/systemd/network/10-host-only.network
+    content: |
+      [Match]
+      Name=enp0s8
+
+      # replace address and gateway
+      [Network]
+      Address=some address
+      Gateway=some gateway
+
+# replace key
+ssh_authorized_keys:
+  - ssh-rsa something
